@@ -1,6 +1,6 @@
 # Todo list on React and Redux
 ## requirements
-- node js (npm install) version 16.13.1
+- node js (npm install) version >= 16
 
 ## setup
 ```bash
