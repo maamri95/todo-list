@@ -10,6 +10,8 @@ export const AppContainer = styled.div`
 
 export const AppHeader = styled.header`
   display: flex;
+  flex-direction: column;
+  gap: 1rem;
   align-items: center;
   justify-content: center;
   height: 100px;
