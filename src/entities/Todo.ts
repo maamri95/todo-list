@@ -30,6 +30,14 @@ export class Todo {
         return "not completed yet";
     }
 
+    get completedAtJson(): string | undefined {
+        return this._completedAt?.toJSON();
+    }
+
+    set completedAt(completedAt: string | undefined) {
+        this._completedAt = completedAt ? new Date(completedAt) : null;
+    }
+
     set completed(completed: boolean) {
         this._completed = completed;
         if (completed) {
@@ -42,4 +50,35 @@ export class Todo {
     set description(description: string) {
         this._description = description;
     }
+
+    private static fromJson(json: TodoJson): Todo {
+        const todo = new Todo(json.description);
+        todo._completed = json.completed;
+        todo.completedAt = json.completedAt;
+        return todo;
+    }
+
+    private static toJson(todo: Todo): TodoJson {
+        return {
+            id: todo.id,
+            description: todo.description,
+            completed: todo.completed,
+            completedAt: todo.completedAtJson
+        };
+    }
+
+    public static fromJsonArray(jsonArray: TodoJson[]): Todo[] {
+        return jsonArray.map(Todo.fromJson);
+    }
+
+    public static toJsonArray(todos: Todo[]): TodoJson[] {
+        return todos.map(Todo.toJson);
+    }
+}
+
+type TodoJson = {
+    id: number;
+    description: string;
+    completed: boolean;
+    completedAt: string | undefined;
 }
