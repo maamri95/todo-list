@@ -1,4 +1,4 @@
-import {Todo} from "@entities";
+import type {Todo} from "@entities/todo.entity";
 
 export class RandomTodoService {
     private static ACTIONS = [
@@ -46,7 +46,7 @@ export class RandomTodoService {
         return this.OBJECTS[Math.floor(Math.random() * this.OBJECTS.length)];
 
     }
-    public static getRandomTodo(): Todo {
-        return new Todo(`${this.getRandomAction()} ${this.getRandomObject()}`)
+    public static getRandomTodoDescription(): string {
+        return `${this.getRandomAction()} ${this.getRandomObject()}`
     }
 }

@@ -1,11 +1,12 @@
-import {Todo} from "@entities";
+import type {Todo} from "@entities";
+import {TodoService} from "../Todo/Todo.service";
 
 export const LocalStorageService = {
     getTodos: () => {
-        return Todo.fromJsonArray(JSON.parse(localStorage.getItem('todos') || '[]'));
+        return JSON.parse(localStorage.getItem('todos') || '[]');
     },
     setTodos: (todos: Todo[]) => {
-        localStorage.setItem('todos', JSON.stringify(Todo.toJsonArray(todos)));
+        localStorage.setItem('todos', JSON.stringify(todos));
     },
     clear: () => {
         localStorage.clear();
