@@ -1,4 +1,5 @@
-import type {Todo} from "@entities/Todo.entity";
+import {Todo} from "../../entities/Todo.entity";
+
 
 export const LocalStorageService = {
     getTodos: () => {

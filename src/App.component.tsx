@@ -1,7 +1,6 @@
 
-import {TodoListStore} from "@components";
-import {TodoActionMemo} from "@components";
 import {useCallback, useState} from "react";
+import {TodoActionMemo, TodoListStore} from "./components";
 
 
 function AppComponent() {

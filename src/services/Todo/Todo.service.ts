@@ -1,5 +1,6 @@
-import {Todo} from "@entities/Todo.entity";
-import {RandomTodoService} from "@services";
+import {RandomTodoService} from "../RandomTodo/RandomTodo.service";
+import {Todo} from "../../entities/Todo.entity";
+
 
 export const TodoService = {
 

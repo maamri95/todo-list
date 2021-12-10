@@ -1,8 +1,8 @@
 import {FC, useCallback} from "react";
-import {Todo} from "@entities/Todo.entity";
-import {TodoItemStoreMemo} from "@components";
 import {useSelector} from "react-redux";
-import {RootState, TodoState} from "@store";
+import {Todo} from "../../entities/Todo.entity";
+import {TodoItemStoreMemo} from "../TodoItem/TodoItem.component";
+import {RootState, TodoState} from "../../store";
 
 interface TodoListProps {
   todos: Todo[];

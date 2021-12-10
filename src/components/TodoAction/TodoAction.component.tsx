@@ -1,6 +1,5 @@
 import {FC, memo} from "react";
-import {AddTodoStoreMemo} from "@components";
-
+import {AddTodoStoreMemo} from "../AddTodo/AddTodo.component";
 interface TodoActionProps {
     onFilterChange: () => void;
 }

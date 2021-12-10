@@ -1,10 +1,10 @@
 import {FC, memo, useCallback, useState} from "react";
-import {Todo} from "@entities/Todo.entity";
 import {useDispatch} from "react-redux";
-import {AppDispatch, removeTodo, toggleTodo} from "@store";
 import cx from "classnames";
-import {TrashIconMemo} from "@assets/Icons";
-import {TodoDetailStore} from "@components";
+import {Todo} from "../../entities/Todo.entity";
+import {TrashIconMemo} from "../../assets/Icons";
+import {TodoDetailStore} from "../TodoDetail/TodoDetail.component";
+import {AppDispatch, removeTodo, toggleTodo} from "../../store";
 
 interface TodoItemProps {
     todo: Todo;

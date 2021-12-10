@@ -1,9 +1,8 @@
 import {FC, FormEvent, memo, useCallback, useRef} from "react";
 import {useDispatch} from "react-redux";
-import type {AppDispatch} from "@store";
-import {addTodo} from "@store";
-import {TodoService} from "@services/Todo/Todo.service";
-import {DiceIconMemo} from "@assets/Icons";
+import {DiceIconMemo} from "../../assets/Icons";
+import {addTodo, AppDispatch} from "../../store";
+import {TodoService} from "../../services/Todo/Todo.service";
 
 interface AddTodoProps {
     onAddTodo: (todoText: string) => void;

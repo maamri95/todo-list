@@ -1,7 +1,8 @@
-import type {Todo} from "@entities/Todo.entity";
+
 import {createSlice, PayloadAction, SliceCaseReducers} from "@reduxjs/toolkit";
-import {LocalStorageService} from "@services";
-import {TodoService} from "@services/Todo/Todo.service";
+import {LocalStorageService} from "../../services";
+import {Todo} from "../../entities/Todo.entity";
+import {TodoService} from "../../services/Todo/Todo.service";
 
 export type TodoState = Todo[];
 const initialState: TodoState = LocalStorageService.getTodos();

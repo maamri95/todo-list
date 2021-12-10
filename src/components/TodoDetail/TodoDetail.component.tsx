@@ -1,11 +1,11 @@
 import {FC, FormEvent, useCallback, useRef} from "react";
 import {createPortal} from "react-dom";
-import {Todo} from "@entities/Todo.entity";
-import {useFetchImage} from "@utils/useFetchImage";
-import {baseUrl} from "@config";
-import {AppDispatch, updateTodo} from "@store";
+import {Todo} from "../../entities/Todo.entity";
+import {useFetchImage} from "../../utils/useFetchImage";
+import {baseUrl} from "../../config.json";
+import {AppDispatch, updateTodo} from "../../store";
 import {useDispatch} from "react-redux";
-import {CloseIconMemo, TrashIconMemo} from "@assets/Icons";
+import {CloseIconMemo, TrashIconMemo} from "../../assets/Icons";
 interface TodoDetailProps {
     todo: Todo;
     onClose: () => void;
