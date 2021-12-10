@@ -1,10 +1,9 @@
-import {FC, FormEvent, useCallback, useRef} from "react";
+import {FC, FormEvent, memo, useCallback, useRef} from "react";
 import {useDispatch} from "react-redux";
-import {AppDispatch} from "../../store";
-import {Todo} from "../../entities/Todo.entity";
-import {addTodo} from "../../store/";
-import {TodoService} from "../../services/Todo/Todo.service";
-import { AddTodoForm } from "./AddTodo.styles";
+import type {AppDispatch} from "@store";
+import {addTodo} from "@store";
+import {TodoService} from "@services/Todo/Todo.service";
+import {DiceIconMemo} from "@assets/Icons";
 
 interface AddTodoProps {
     onAddTodo: (todoText: string) => void;
@@ -21,15 +20,17 @@ export const AddTodo: FC<AddTodoProps> = ({onAddTodo, onRandom}) => {
         }
         inputRef.current!.value = '';
     };
-    return (
-        <AddTodoForm onSubmit={todoSubmitHandler}>
-            <div className="form-control">
-                <input type="text" ref={inputRef} placeholder="To do description"/>
+    return (<>
+        <form onSubmit={todoSubmitHandler}>
+            <div className="d-flex w-75 mx-auto align-items-center">
+                <input className="form-control my-2 " type="text" ref={inputRef} placeholder="To do description"/>
+                <button className="btn btn-dark" type="button" onClick={onRandom}><DiceIconMemo/></button>
             </div>
-            <button type="submit">Add To do</button>
-            <button onClick={onRandom}>Add Random</button>
-        </AddTodoForm>
-    )
+            <div className="d-flex gap-4 justify-content-center m-4" >
+                <button className="btn btn-primary" type="submit">Add Task</button>
+            </div>
+        </form>
+    </>);
 };
 
 
@@ -51,3 +52,5 @@ export const AddTodoStore: FC<AddTodoStoreProps> = () => {
         </div>
     )
 };
+
+export const AddTodoStoreMemo = memo(AddTodoStore);

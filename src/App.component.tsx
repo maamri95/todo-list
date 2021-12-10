@@ -1,30 +1,20 @@
-import { AppContainer, AppHeader, AppTitle } from './App.styles'
-import {TodoList} from "./components/TodoList/TodoList.component";
-import {RootState, TodoState} from "./store";
-import {useSelector} from "react-redux";
-import {AddTodoStore} from "./components/AddTodo/AddTodo.component";
-import {useCallback, useEffect, useState} from "react";
+
+import {TodoListStore} from "@components";
+import {TodoActionMemo} from "@components";
+import {useCallback, useState} from "react";
+
 
 function AppComponent() {
-    const todos = useSelector<RootState, TodoState>(state => state.todos);
     const [showCompleted, setShowCompleted] = useState(false);
-    const getVisibleTodos = useCallback(() => {
-        return showCompleted ? todos : todos.filter(todo => !todo.completed);
-    }, [showCompleted, todos]);
+    const onFilterChange = useCallback(() => {
+        setShowCompleted(!showCompleted);
+    }, [showCompleted]);
   return (
-      <AppContainer>
-        <AppHeader>
-          <AppTitle>
-            To Do List App
-          </AppTitle>
-            <label>
-                <input type="checkbox" checked={showCompleted} onChange={() => setShowCompleted(!showCompleted)}/>
-                Show completed
-            </label>
-            <AddTodoStore/>
-        </AppHeader>
-        <TodoList todos={getVisibleTodos()} />
-      </AppContainer>
+      <div className="card todos-container">
+          <h1 className="title p-2">To do:</h1>
+          <TodoListStore showCompleted={showCompleted}/>
+          <TodoActionMemo onFilterChange={onFilterChange}/>
+      </div>
   )
 }
 

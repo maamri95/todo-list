@@ -1,4 +1,3 @@
-import type {Todo} from "@entities/todo.entity";
 
 export class RandomTodoService {
     private static ACTIONS = [

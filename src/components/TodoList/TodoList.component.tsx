@@ -1,7 +1,8 @@
-import {FC} from "react";
-import { TodoListContainer } from "./TodoList.styles";
-import {Todo} from "../../entities/Todo.entity";
-import {TodoItemStore} from "../TodoItem/TodoItem.component";
+import {FC, useCallback} from "react";
+import {Todo} from "@entities/Todo.entity";
+import {TodoItemStoreMemo} from "@components";
+import {useSelector} from "react-redux";
+import {RootState, TodoState} from "@store";
 
 interface TodoListProps {
   todos: Todo[];
@@ -10,10 +11,22 @@ interface TodoListProps {
 export const TodoList: FC<TodoListProps> = ({todos}) => {
 
   return (
-    <TodoListContainer>
-      {todos.map(todo => (
-        <TodoItemStore key={todo.id} todo={todo} />
-      ))}
-    </TodoListContainer>
+      <ul className="list-group todos-list">
+        {todos.map(todo => (
+            <TodoItemStoreMemo key={todo.id} todo={todo} />
+        ))}
+      </ul>
   );
 };
+
+interface TodoListStoreProps {
+    showCompleted: boolean;
+}
+
+export const TodoListStore:FC<TodoListStoreProps> = ({showCompleted}) =>{
+    const todos = useSelector<RootState, TodoState>(state => state.todos);
+    const getVisibleTodos = useCallback(() => {
+        return showCompleted ? todos : todos.filter(todo => !todo.completed);
+    }, [showCompleted, todos]);
+    return <TodoList todos={getVisibleTodos()}/>
+}

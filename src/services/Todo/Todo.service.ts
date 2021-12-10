@@ -1,19 +1,8 @@
-import {Todo} from "../../entities/Todo.entity";
-import {RandomTodoService} from "../RandomTodo/RandomTodo.service";
+import {Todo} from "@entities/Todo.entity";
+import {RandomTodoService} from "@services";
 
 export const TodoService = {
 
-
-    completedAt(todo:Todo): string {
-        if (todo.completedAt) {
-            return `${todo.completedAt.toLocaleTimeString()} ${todo.completedAt.toLocaleDateString()}`;
-        }
-        return "not completed yet";
-    },
-
-    completedAtJson(todo:Todo): string | undefined {
-        return todo.completedAt?.toJSON();
-    },
 
     buildTodo(description: string): Todo {
         return {
@@ -24,11 +13,14 @@ export const TodoService = {
         }
     },
     buildRandomTodo(): Todo {
-        return {
-            id : Math.floor(Math.random() * 100000000),
-            description : RandomTodoService.getRandomTodoDescription(),
-            completed : false,
-            completedAt : null
-        }
+        return this.buildTodo(RandomTodoService.getRandomTodoDescription())
+    },
+
+    toggleTodo(todo:Todo): Todo {
+        todo.completed = !todo.completed;
+        const date = new Date();
+
+        todo.completedAt = todo.completed ? `${date.toLocaleDateString()} at ${date.toLocaleTimeString()}` : null;
+        return todo;
     }
 };

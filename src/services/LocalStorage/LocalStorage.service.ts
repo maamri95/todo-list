@@ -1,5 +1,4 @@
-import type {Todo} from "@entities";
-import {TodoService} from "../Todo/Todo.service";
+import type {Todo} from "@entities/Todo.entity";
 
 export const LocalStorageService = {
     getTodos: () => {
@@ -7,8 +6,5 @@ export const LocalStorageService = {
     },
     setTodos: (todos: Todo[]) => {
         localStorage.setItem('todos', JSON.stringify(todos));
-    },
-    clear: () => {
-        localStorage.clear();
     }
 };
