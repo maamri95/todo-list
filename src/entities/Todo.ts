@@ -71,7 +71,7 @@ export class Todo {
         return jsonArray.map(Todo.fromJson);
     }
 
-    public static toJsonArray(todos: Todo[]): TodoJson[] {
+    public static toJsonArray(todos: []): TodoJson[] {
         return todos.map(Todo.toJson);
     }
 }
