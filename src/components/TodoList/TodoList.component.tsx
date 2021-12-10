@@ -1,11 +1,18 @@
-export const TodoList = (props: TodoListProps) => {
-  const { todos, onTodoClick } = props;
+import {FC} from "react";
+import { TodoListContainer } from "./TodoList.styles";
+import {Todo} from "../../entities";
+
+interface TodoListProps {
+  todos: Todo[];
+}
+
+export const TodoList: FC<TodoListProps> = ({todos}) => {
 
   return (
-    <ul>
+    <TodoListContainer>
       {todos.map(todo => (
-        <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
+        <TodoItem key={todo.id} todo={todo} />
       ))}
-    </ul>
+    </TodoListContainer>
   );
 };
