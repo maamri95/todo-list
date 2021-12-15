@@ -7,17 +7,16 @@ import {TodoService} from "../../services/Todo/Todo.service";
 export type TodoState = Todo[];
 const initialState: TodoState = LocalStorageService.getTodos();
 
+
 export const todoSlice = createSlice<TodoState, SliceCaseReducers<TodoState>>({
     name: 'todo',
     initialState,
     reducers: {
         addTodo: (state, action:PayloadAction<Todo>) => {
             state.push(action.payload);
-            LocalStorageService.setTodos(state);
         },
         removeTodo: (state, action:PayloadAction<Todo>) => {
             state = state.filter(todo => todo.id !== action.payload.id);
-            LocalStorageService.setTodos(state);
             return state;
         },
         toggleTodo: (state, action:PayloadAction<Todo>) => {
@@ -27,7 +26,6 @@ export const todoSlice = createSlice<TodoState, SliceCaseReducers<TodoState>>({
                 }
                 return todo;
             });
-            LocalStorageService.setTodos(state);
         },
         updateTodo: (state, action:PayloadAction<Todo>) => {
             state.map(todo => {
@@ -37,7 +35,6 @@ export const todoSlice = createSlice<TodoState, SliceCaseReducers<TodoState>>({
                 }
                 return todo;
             });
-            LocalStorageService.setTodos(state);
         },
     }
 });
